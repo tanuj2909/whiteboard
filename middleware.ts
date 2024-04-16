@@ -26,6 +26,22 @@ export default auth((req) => {
     return;
   }
 
+  if(!isLoggedIn && !isPublicRoute) {
+    let callbackUrl = nextUrl.pathname;
+    if(nextUrl.search) {
+      callbackUrl != nextUrl.search;
+    }
+
+    const encodedCallbackUrl = encodeURIComponent(callbackUrl);
+
+    return Response.redirect(new URL(
+      `/auth/signin?callbackUrl=${encodedCallbackUrl}`, 
+      nextUrl
+    ))
+  }
+
+  return;
+
 })
  
 // Optionally, don't invoke Middleware on some paths

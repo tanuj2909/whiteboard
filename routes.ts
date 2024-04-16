@@ -11,8 +11,8 @@ export const publicRoutes = [
  * @type {string[]}
  */
 export const authRoutes = [
-    "/auth/login",
-    "/auth/register"
+    "/auth/signin",
+    "/auth/error"
 ];
 
 /**
@@ -25,4 +25,4 @@ export const apiAuthPrefix = "/api/auth";
  * default route after auth
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/";
+export const DEFAULT_LOGIN_REDIRECT = "/board";
