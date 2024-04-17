@@ -1,8 +1,13 @@
+import { Navbar } from "./board/_components/navbar";
+
 const BoardLayout = ({ children }: { children: React.ReactNode }) => {
     return ( 
-        <div>
-            {children}
-        </div>
+        <>
+            <Navbar />
+            <div className="h-full bg-board mt-20">
+                {children}
+            </div>
+        </>
      );
 }
  
