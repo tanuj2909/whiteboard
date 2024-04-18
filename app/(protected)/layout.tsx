@@ -1,12 +1,18 @@
+import { auth } from "@/auth";
 import { Navbar } from "./board/_components/navbar";
+import { SessionProvider } from "next-auth/react";
 
-const BoardLayout = ({ children }: { children: React.ReactNode }) => {
+const BoardLayout = async ({ children }: { children: React.ReactNode }) => {
+
+    const session = await auth();
     return ( 
         <>
-            <Navbar />
-            <div className="h-full bg-board mt-20">
-                {children}
-            </div>
+            <SessionProvider session={session}>
+                <Navbar />
+                <div className="h-full bg-board pt-20">
+                    {children}
+                </div>
+            </SessionProvider>
         </>
      );
 }

@@ -1,7 +1,5 @@
-import { FiMenu } from "react-icons/fi";
 import { Logo } from "./logo";
 import { Palette } from "./palette";
-import { Button } from "@/components/ui/button";
 import { Collab } from "./collab";
 
 export const Navbar = () => {
