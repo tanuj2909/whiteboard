@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 let moves: [number, number][] = [];
 export const useDraw = (
     options: CtxOptions,
-    ctx: CanvasRenderingContext2D
+    ctx: CanvasRenderingContext2D | undefined
 ) => {
 
     const [drawing, setDrawing] = useState(false);
