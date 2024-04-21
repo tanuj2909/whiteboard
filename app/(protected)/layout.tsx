@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
-import { Navbar } from "./board/_components/navbar";
+import { Navbar } from "./_components/navbar";
 import { SessionProvider } from "next-auth/react";
+import { RecoilRoot } from "recoil";
 
 const BoardLayout = async ({ children }: { children: React.ReactNode }) => {
 
@@ -8,10 +9,12 @@ const BoardLayout = async ({ children }: { children: React.ReactNode }) => {
     return ( 
         <>
             <SessionProvider session={session}>
-                <Navbar />
-                <div className="h-full bg-board pt-20">
-                    {children}
-                </div>
+                <RecoilRoot>
+                    <Navbar />
+                    <div className="h-full bg-board ">
+                        {children}
+                    </div>
+                </RecoilRoot>
             </SessionProvider>
         </>
      );

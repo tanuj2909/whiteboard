@@ -5,7 +5,7 @@ import { socket } from "@/lib/socket";
 import { CtxOptions } from "@/types";
 import { useEffect, useRef, useState } from "react";
 
-const BoardPage = () => {
+const CanvasPage = () => {
 
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const ctxRef = useRef<CanvasRenderingContext2D>();
@@ -17,7 +17,13 @@ const BoardPage = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            setSize({ width: window.innerWidth, height: window.innerHeight })
+            const canvas = canvasRef.current;
+            if(canvas) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                setSize({ width: canvas.width, height: canvas.height });
+            }
+            
         }
 
         window.addEventListener("resize", handleResize);
@@ -97,42 +103,26 @@ const BoardPage = () => {
     
     return ( 
         <div className="h-full w-full">
-            <button onClick={() => setOptions({ lineColor: "blue", lineWidth: 5})}>Helo</button>
             <canvas 
                 className="h-full w-full"
                 ref={canvasRef}
                 onMouseDown={(e) => {
-                    const { x, y } = adjustCoordinates(e.clientX, e.clientY);
-                    handleStartDrawing(x, y);
+                    handleStartDrawing(e.clientX, e.clientY);
                 }}
                 onMouseUp={(e) => {
-                    const { x, y } = adjustCoordinates(e.clientX, e.clientY);
-                    handleEndDrawing(x, y);
+                    handleEndDrawing(e.clientX, e.clientY);
                 }}
                 onMouseMove={(e) => {
-                    const { x, y } = adjustCoordinates(e.clientX, e.clientY);
-                    handleDraw(x, y);
+                    handleDraw(e.clientX, e.clientY);
                 }}
                 onTouchStart={(e) => {
-                    const { x, y } = adjustCoordinates(
-                        e.changedTouches[0].clientX,
-                        e.changedTouches[0].clientY
-                    );
-                    handleStartDrawing(x, y);
+                    handleStartDrawing(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
                 }}
                 onTouchEnd={(e) => {
-                    const { x, y } = adjustCoordinates(
-                        e.changedTouches[0].clientX,
-                        e.changedTouches[0].clientY
-                    );
-                    handleEndDrawing(x, y);
+                    handleEndDrawing(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
                 }}
                 onTouchMove={(e) => {
-                    const { x, y } = adjustCoordinates(
-                        e.changedTouches[0].clientX,
-                        e.changedTouches[0].clientY
-                    );
-                    handleDraw(x, y);
+                    handleDraw(e.changedTouches[0].clientX, e.changedTouches[0].clientY);
                 }}
                 width={size.width}
                 height={size.height}
@@ -141,4 +131,4 @@ const BoardPage = () => {
      );
 }
  
-export default BoardPage;
+export default CanvasPage;
