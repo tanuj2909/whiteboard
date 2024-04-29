@@ -25,4 +25,4 @@ export const apiAuthPrefix = "/api/auth";
  * default route after auth
  * @type {string}
  */
-export const DEFAULT_LOGIN_REDIRECT = "/board";
+export const DEFAULT_LOGIN_REDIRECT = "/canvas";
