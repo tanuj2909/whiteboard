@@ -1,9 +1,12 @@
+"use client"
 import { CANVAS_SIZE } from "@/constants/canvas-size";
 import { useViewportSize } from "@/hooks/canvas/use-viewport-size";
 import { MotionValue, useMotionValue, motion } from "framer-motion";
 import { Dispatch, SetStateAction, forwardRef, useEffect, useRef } from "react";
 
-export const MiniMap = forwardRef<{
+export const Minimap = forwardRef<
+    HTMLCanvasElement,    
+    {
     x: MotionValue<number>;
     y: MotionValue<number>;
     isDragging: boolean;
@@ -69,5 +72,5 @@ export const MiniMap = forwardRef<{
     )
 })
 
-MiniMap.displayName = "MiniMap";
+Minimap.displayName = "Minimap";
 

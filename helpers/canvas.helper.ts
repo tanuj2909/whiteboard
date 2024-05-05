@@ -1,6 +1,6 @@
 import { CtxOptions } from "@/types";
 
-const drawFromSocket = (
+export const drawFromSocket = (
     socketMoves: [number, number][],
     socketOptions: CtxOptions,
     cntx: CanvasRenderingContext2D,
